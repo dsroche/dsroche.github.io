@@ -3,7 +3,8 @@ plugins:
 relative_links:
   enabled: true
   collections: true
-theme: jekyll-theme-midnight
+theme: jekyll-theme-hacker
+markdown: kramdown
 include:
   - CONTRIBUTING.md
   - README.md
