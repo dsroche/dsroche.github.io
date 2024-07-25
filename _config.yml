@@ -3,7 +3,7 @@ plugins:
 relative_links:
   enabled: true
   collections: true
-theme: hacker
+theme: jekyll-theme-hacker
 include:
   - CONTRIBUTING.md
   - README.md
