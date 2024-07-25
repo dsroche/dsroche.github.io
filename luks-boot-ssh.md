@@ -28,13 +28,13 @@ want to boot remotely from the client.)
 
 Do this on the *target*.
 
-1)  Install packages
+1.  Install packages
 
     ```
     sudo apt install dropbear-initramfs console-setup
     ```
 
-2)  Take note of SSH host key ED25519 fingerprint from install above.
+2.  Take note of SSH host key ED25519 fingerprint from install above.
 
     Or, you can get the fingerprint later by running
 
@@ -44,7 +44,7 @@ Do this on the *target*.
 
     (This will be needed by the *client* machine.)
 
-3)  Edit dropbear config
+3.  Edit dropbear config
 
     ```
     sudo -e /etc/dropbear/initramfs/dropbear.conf
@@ -67,7 +67,7 @@ Do this on the *target*.
     *   `-c /usr/bin/cryptroot-unlock`: run this command (only) instead
         of a shell
 
-4)  Edit IP address config
+4.  Edit IP address config
 
     Run `ip a` if you're not sure about your network device name and IP
     address info.
@@ -94,7 +94,7 @@ Do this on the *target*.
         IP=::::lnx1082409govt:enp1s0:dhcp
         ```
 
-5)  Add network device module
+5.  Add network device module
 
     (Sometimes will work without doing this...)
 
@@ -111,7 +111,7 @@ Do this on the *target*.
     sudo -e /etc/initramfs-tools/modules
     ```
 
-6)  Add authorized keys
+6.  Add authorized keys
 
     This line will add *all* authorized keys to SSH (as current user) to
     allow them to SSH at boot time for disk decryption:
@@ -120,13 +120,13 @@ Do this on the *target*.
     cat ~/.ssh/authorized_keys | sudo tee /etc/dropbear/initramfs/authorized_keys
     ```
 
-7)  Rebuild the initramfs
+7.  Rebuild the initramfs
 
     ```
     sudo update-initramfs -u -k all
     ```
 
-8)  Reboot and cross your fingers!
+8.  Reboot and cross your fingers!
 
     At reboot, after GRUB you should see a prompt for the decryption
     password AND output from dropbear showing the IP address
