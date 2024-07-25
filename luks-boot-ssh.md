@@ -2,6 +2,8 @@
 title: LUKS full-disk decryption on boot using SSH
 ---
 
+# LUKS full-disk decryption on boot using SSH
+
 This short note says how to decrypt a LUKS-encrypted volume on Linux
 remotely using SSH, at boot time.
 
@@ -125,11 +127,14 @@ Do this on the *target*.
     cat ~/.ssh/authorized_keys | sudo tee /etc/dropbear/initramfs/authorized_keys
     ```
 
-7.  Rebuild the initramfs
+7.  Rebuild the initramfs (**critical!**)
 
     ```
     sudo update-initramfs -u -k all
     ```
+
+    You need to do this again anytime the above config files are
+    updated.
 
 8.  Reboot and cross your fingers!
 
